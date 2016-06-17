@@ -238,6 +238,9 @@
 			// class name of the message block
 			blockMsgClass: 'blockMsg',
 
+			// class name of the overlay block
+			blockOverlayClass: 'blockOverlay',
+
 			// if it is already blocked, then ignore it (don't unblock and reblock)
 			ignoreIfBlocked: false
 		};
@@ -297,9 +300,9 @@
 				lyr1 = $('<div class="blockUI" style="display:none"></div>');
 
 			if (opts.theme)
-				lyr2 = $('<div class="blockUI blockOverlay ui-widget-overlay" style="z-index:'+ (z++) +';display:none"></div>');
+				lyr2 = $('<div class="blockUI ' + opts.blockOverlayClass + ' ui-widget-overlay" style="z-index:'+ (z++) +';display:none"></div>');
 			else
-				lyr2 = $('<div class="blockUI blockOverlay" style="z-index:'+ (z++) +';display:none;border:none;margin:0;padding:0;width:100%;height:100%;top:0;left:0"></div>');
+				lyr2 = $('<div class="blockUI ' + opts.blockOverlayClass + '" style="z-index:'+ (z++) +';display:none;border:none;margin:0;padding:0;width:100%;height:100%;top:0;left:0"></div>');
 
 			if (opts.theme && full) {
 				s = '<div class="blockUI ' + opts.blockMsgClass + ' blockPage ui-dialog ui-widget ui-corner-all" style="z-index:'+(z+10)+';display:none;position:fixed">';
@@ -576,7 +579,7 @@
 			}
 			var opts = e.data;
 			var target = $(e.target);
-			if (target.hasClass('blockOverlay') && opts.onOverlayClick)
+			if (target.hasClass(opts.blockOverlayClass) && opts.onOverlayClick)
 				opts.onOverlayClick(e);
 
 			// allow events within the message content
