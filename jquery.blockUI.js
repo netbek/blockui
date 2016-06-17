@@ -583,7 +583,7 @@
 				opts.onOverlayClick(e);
 
 			// allow events within the message content
-			if (target.parents('div.' + opts.blockMsgClass).length > 0)
+			if (target.parents('div.' + opts.blockMsgClass.replace(/\s/, '.')).length > 0)
 				return true;
 
 			// allow events for content that is not being blocked
